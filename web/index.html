@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuillStar — heyman.ai</title>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/menu.css">
+<link rel="stylesheet" href="css/editor.css">
+<link rel="stylesheet" href="css/status-bar.css">
+<link rel="stylesheet" href="css/command-palette.css">
+<link rel="stylesheet" href="css/find-bar.css">
+<link rel="stylesheet" href="css/about.css">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+
+<!-- Menu Bar -->
+<div class="menu-bar" id="menuBar">
+  <div class="menu-item" data-menu="file"><span class="key">F</span>ile
+    <div class="dropdown">
+      <div class="dropdown-item" data-cmd="new">New <span class="shortcut">Ctrl+N</span></div>
+      <div class="dropdown-item" data-cmd="open">Open... <span class="shortcut">Ctrl+O</span></div>
+      <div class="dropdown-sep"></div>
+      <div class="dropdown-item" data-cmd="save">Save <span class="shortcut">Ctrl+S</span></div>
+      <div class="dropdown-item" data-cmd="saveAs">Save As... <span class="shortcut">Ctrl+Shift+S</span></div>
+      <div class="dropdown-item" data-cmd="exportTxt">Export as .txt</div>
+      <div class="dropdown-sep"></div>
+      <div class="dropdown-item" data-cmd="print">Print <span class="shortcut">Ctrl+P</span></div>
+    </div>
+  </div>
+  <div class="menu-item" data-menu="edit"><span class="key">E</span>dit
+    <div class="dropdown">
+      <div class="dropdown-item" data-cmd="undo">Undo <span class="shortcut">Ctrl+Z</span></div>
+      <div class="dropdown-item" data-cmd="redo">Redo <span class="shortcut">Ctrl+Y</span></div>
+      <div class="dropdown-sep"></div>
+      <div class="dropdown-item" data-cmd="cut">Cut <span class="shortcut">Ctrl+X</span></div>
+      <div class="dropdown-item" data-cmd="copy">Copy <span class="shortcut">Ctrl+C</span></div>
+      <div class="dropdown-item" data-cmd="paste">Paste <span class="shortcut">Ctrl+V</span></div>
+      <div class="dropdown-sep"></div>
+      <div class="dropdown-item" data-cmd="selectAll">Select All <span class="shortcut">Ctrl+A</span></div>
+      <div class="dropdown-item" data-cmd="find">Find &amp; Replace <span class="shortcut">Ctrl+F</span></div>
+      <div class="dropdown-item" data-cmd="goto">Go to Line <span class="shortcut">Ctrl+G</span></div>
+    </div>
+  </div>
+  <div class="menu-item" data-menu="format">F<span class="key">o</span>rmat
+    <div class="dropdown">
+      <div class="dropdown-item" data-cmd="bold">Bold <span class="shortcut">Ctrl+B</span></div>
+      <div class="dropdown-item" data-cmd="italic">Italic <span class="shortcut">Ctrl+I</span></div>
+      <div class="dropdown-item" data-cmd="underline">Underline <span class="shortcut">Ctrl+U</span></div>
+      <div class="dropdown-sep"></div>
+      <div class="dropdown-item" data-cmd="heading">Heading <span class="shortcut">Ctrl+H</span></div>
+      <div class="dropdown-item" data-cmd="blockquote">Block Quote</div>
+    </div>
+  </div>
+  <div class="menu-item" data-menu="view"><span class="key">V</span>iew
+    <div class="dropdown">
+      <div class="dropdown-item" data-cmd="toggleHelp">Toggle Help Bar</div>
+      <div class="dropdown-item" data-cmd="toggleLines">Toggle Line Numbers</div>
+      <div class="dropdown-item" data-cmd="toggleRuler">Toggle Ruler</div>
+      <div class="dropdown-item" data-cmd="toggleWrap">Toggle Word Wrap</div>
+      <div class="dropdown-sep"></div>
+      <div class="dropdown-item" data-cmd="zoomIn">Zoom In <span class="shortcut">Ctrl++</span></div>
+      <div class="dropdown-item" data-cmd="zoomOut">Zoom Out <span class="shortcut">Ctrl+-</span></div>
+      <div class="dropdown-item" data-cmd="zoomReset">Reset Zoom <span class="shortcut">Ctrl+0</span></div>
+    </div>
+  </div>
+  <div class="menu-item" data-menu="help"><span class="key">H</span>elp
+    <div class="dropdown">
+      <div class="dropdown-item" data-cmd="cmdPalette">Command Palette <span class="shortcut">Ctrl+Shift+P</span></div>
+      <div class="dropdown-item" data-cmd="shortcuts">Keyboard Shortcuts</div>
+      <div class="dropdown-sep"></div>
+      <div class="dropdown-item" data-cmd="about">About QuillStar</div>
+    </div>
+  </div>
+</div>
+
+<!-- Help Bar (WordStar-style quick reference) -->
+<div class="help-bar" id="helpBar">
+  <span><kbd>^S</kbd> Save</span>
+  <span><kbd>^F</kbd> Find</span>
+  <span><kbd>^G</kbd> Go to</span>
+  <span><kbd>^B</kbd> Bold</span>
+  <span><kbd>^I</kbd> Italic</span>
+  <span><kbd>^U</kbd> Underline</span>
+  <span><kbd>^Z</kbd> Undo</span>
+  <span><kbd>^Y</kbd> Redo</span>
+  <span><kbd>^⇧P</kbd> Commands</span>
+</div>
+
+<!-- Find/Replace Bar -->
+<div class="find-bar" id="findBar">
+  <span class="find-label">Find:</span>
+  <input type="text" id="findInput" placeholder="Search...">
+  <span class="find-label">Replace:</span>
+  <input type="text" id="replaceInput" placeholder="Replace with...">
+  <button id="findPrev">Prev</button>
+  <button id="findNext">Next</button>
+  <button id="replaceOne">Replace</button>
+  <button id="replaceAll">All</button>
+  <button id="findClose">ESC</button>
+</div>
+
+<!-- Ruler -->
+<div class="ruler" id="ruler">
+  <div class="ruler-inner" id="rulerInner"></div>
+</div>
+
+<!-- Editor -->
+<div class="editor-wrap">
+  <div class="line-numbers" id="lineNumbers"></div>
+  <div class="editor" id="editor" contenteditable="true" spellcheck="true"></div>
+</div>
+
+<!-- Status Bar -->
+<div class="status-bar">
+  <div class="left">
+    <span><span class="label">File:</span> <span class="value" id="fileName">Untitled</span></span>
+    <span id="modIndicator" class="saved">Saved</span>
+  </div>
+  <div class="right">
+    <span><span class="label">Ln</span> <span class="value" id="curLine">1</span></span>
+    <span><span class="label">Col</span> <span class="value" id="curCol">1</span></span>
+    <span><span class="label">Words</span> <span class="value" id="wordCount">0</span></span>
+    <span><span class="label">Chars</span> <span class="value" id="charCount">0</span></span>
+  </div>
+</div>
+
+<!-- Command Palette -->
+<div class="cmd-overlay" id="cmdOverlay">
+  <div class="cmd-box">
+    <input type="text" class="cmd-input" id="cmdInput" placeholder="Type a command...">
+    <div class="cmd-list" id="cmdList"></div>
+  </div>
+</div>
+
+<!-- About Dialog -->
+<div class="about-overlay" id="aboutOverlay">
+  <div class="about-box">
+    <h2>QuillStar</h2>
+    <div class="tagline">Your humble word processor has grown up.</div>
+    <p>A modern writing tool inspired by the<br>legendary WordStar.</p>
+    <p style="color:var(--text-dim);font-size:0.75rem;margin-top:0.75rem">
+      Keyboard-driven. Distraction-free.<br>The writer always comes first.
+    </p>
+    <button class="close-btn" id="aboutClose">OK</button>
+  </div>
+</div>
+
+<script src="js/state.js"></script>
+<script src="js/find-replace.js"></script>
+<script src="js/commands.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/command-palette.js"></script>
+<script src="js/editor.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

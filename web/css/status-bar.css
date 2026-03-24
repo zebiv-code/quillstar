@@ -1,0 +1,17 @@
+/* --- Status Bar --- */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  background: var(--status-bg);
+  border-top: 1px solid var(--border);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  user-select: none;
+}
+.status-bar .left { display: flex; gap: 1.5rem; }
+.status-bar .right { display: flex; gap: 1.5rem; }
+.status-bar .label { color: var(--text-dim); }
+.status-bar .value { color: var(--accent); }
+.status-bar .modified { color: #e57373; }
+.status-bar .saved { color: #81c784; }

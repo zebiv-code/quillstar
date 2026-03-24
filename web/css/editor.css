@@ -1,0 +1,63 @@
+/* --- Ruler --- */
+.ruler {
+  background: var(--status-bg);
+  border-bottom: 1px solid var(--border);
+  padding: 0 0;
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  overflow: hidden;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  flex-shrink: 0;
+  letter-spacing: 0;
+}
+.ruler-inner {
+  padding-left: 3.5rem;
+  white-space: pre;
+}
+
+/* --- Editor Area --- */
+.editor-wrap {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  background: var(--editor-bg);
+}
+.line-numbers {
+  width: 3.5rem;
+  background: var(--status-bg);
+  border-right: 1px solid var(--border);
+  text-align: right;
+  padding: 0.5rem 0.4rem 0.5rem 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  overflow: hidden;
+  user-select: none;
+  line-height: 1.28rem;
+  flex-shrink: 0;
+  white-space: pre;
+}
+.editor {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  outline: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.88rem;
+  line-height: 1.28rem;
+  color: var(--text);
+  caret-color: var(--cursor);
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  tab-size: 4;
+}
+.editor * {
+  line-height: inherit;
+  font-size: inherit;
+  margin: 0;
+  padding: 0;
+}
+.editor::selection, .editor *::selection {
+  background: var(--selection);
+}

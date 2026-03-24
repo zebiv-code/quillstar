@@ -1,0 +1,36 @@
+/* --- Find/Replace Bar --- */
+.find-bar {
+  display: none;
+  background: var(--status-bg);
+  border-bottom: 1px solid var(--border);
+  padding: 0.4rem 0.75rem;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+.find-bar.open { display: flex; }
+.find-bar input {
+  background: var(--editor-bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.25rem 0.5rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem;
+  border-radius: 3px;
+  outline: none;
+  width: 14rem;
+}
+.find-bar input:focus { border-color: var(--accent); }
+.find-bar button {
+  background: var(--menu-hl);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.find-bar button:hover { background: var(--accent-dim); color: var(--accent); }
+.find-bar .find-label { color: var(--text-dim); }

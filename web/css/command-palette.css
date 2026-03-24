@@ -1,0 +1,42 @@
+/* --- Command Palette --- */
+.cmd-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 200;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 15vh;
+}
+.cmd-overlay.open { display: flex; }
+.cmd-box {
+  background: var(--menu-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  width: 28rem;
+  max-width: 90vw;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  overflow: hidden;
+}
+.cmd-input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  background: var(--editor-bg);
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.9rem;
+  outline: none;
+}
+.cmd-input::placeholder { color: var(--text-dim); }
+.cmd-list { max-height: 20rem; overflow-y: auto; }
+.cmd-list-item {
+  padding: 0.4rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+.cmd-list-item:hover, .cmd-list-item.selected { background: var(--menu-hl); color: var(--accent); }
+.cmd-list-item .cmd-shortcut { color: var(--text-dim); }
